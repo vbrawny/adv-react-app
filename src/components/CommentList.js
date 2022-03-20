@@ -6,7 +6,7 @@ export const CommentsList =  (props) => {
   // const renderComments = () =>  (
   //   props.comments.map(comment => (<li key={comment}>{comment}</li>))
   // )
-
+  console.log(props.comments);
   return (
   <div>
     <ul>
