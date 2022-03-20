@@ -460,3 +460,86 @@ export default ({ children, initialState = {} }) => {
   );
 };
 ```
+
+### 8-fetching-remote-resource
+
+we will install axios(for fetching resource) and redux-promise(for handling promises out of the axios code)
+
+```sh
+npm install --save axios redux-promise
+```
+
+we will hook this redux-promise middleware to our store
+
+for that we add two new references
+applyMiddleware from of the redux
+reduxPromise from redux-promise
+
+and add this as middleware to the createStore instance
+
+root.js
+
+```js
+import React from "react";
+
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+//middleware
+import reduxPromise from "redux-promise";
+
+import reducers from "./reducers";
+
+// export default (props) => {
+//     return (
+//         <Provider store={createStore(reducers,{})}>
+//             {props.children}
+//         </Provider>
+//     )
+// }
+
+// export default (props) => {
+export default ({ children, initialState = {} }) => {
+  const store = createStore(
+    reducers,
+    initialState,
+    applyMiddleware(reduxPromise)
+  );
+  return (
+    // <Provider store={createStore(reducers,props.initialState)}>
+    <Provider store={store}>
+      {/* {props.children} */}
+      {children}
+    </Provider>
+  );
+};
+```
+
+Now we will call the remote resource
+
+actions/types.js
+
+```js
+export const SAVE_COMMENT = "save_comment";
+export const FETCH_COMMENTS = "fetch_comments";
+```
+
+actions/index.js
+
+```js
+import { SAVE_COMMENT, FETCH_COMMENTS } from "./types";
+
+export function saveComment(comment) {
+  return {
+    type: SAVE_COMMENT,
+    payload: comment,
+  };
+}
+
+export function fetchComments() {
+  const response = axios.get(`http://jsonplaceholder.typicode.com/comments`);
+  return {
+    type: FETCH_COMMENTS,
+    payload: response,
+  };
+}
+```
