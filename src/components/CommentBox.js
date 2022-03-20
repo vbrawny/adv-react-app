@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 class CommentBox extends Component {
   state = { comment: '' };
@@ -10,8 +12,10 @@ class CommentBox extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    // TODO - Call an action creator
-    // And save the comment
+    // we will handle the connect related actioncreators/mapDispatchToProps using the props and pass the component info to store.
+    // so this.props - will give that info
+    // we use the same for the inflow too that null thing/mapStateToProps.
+    this.props.saveComment(this.state.comment);
 
     this.setState({ comment: '' });
   };
@@ -29,4 +33,12 @@ class CommentBox extends Component {
   }
 }
 
-export default CommentBox;
+//wire up redux through connect(mapStateToProps,allactioncreators/mapDispatchToProps)
+//mapStateToProps - is the inflow from redux state to component
+//mapDispatchToProps - is the actions outflow from component to redux state.
+
+//in this case CommentBox doesn't get any state out of our application store, we mark it as null
+//whereas since we will access some actions of store to save comments we will have actions creators/mapDispatchToPros
+
+//export default CommentBox;
+export default connect(null,actions)(CommentBox);
