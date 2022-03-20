@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+### 1-adding-redux
+
 npm install redux react-redux
 
 we will wire up redux,
