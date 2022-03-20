@@ -11,10 +11,13 @@ import reportWebVitals from './reportWebVitals';
 // store is the instance of our root redux store to which we pass createStore (generates the redux instance of our application)
 // createStore function take two arguments - the total reducers of our application, which is combineReducers resultant
 // and the initial state of the application, as of now it is empty object.
+const initialState = {
+    comments: ['Comment 1','Comment 2']
+}
 
 ReactDOM.render(
   <React.StrictMode>    
-    <Root>
+    <Root initialState={initialState}>
       <App />
     </Root>  
   </React.StrictMode>,
