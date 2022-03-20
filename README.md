@@ -143,3 +143,42 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+
+### 3-save-comment-action-creator
+
+types.js - to store types.
+
+```js
+export const SAVE_COMMENT = "save_comment";
+```
+
+index.js - to house all our actions (action creators).
+
+```js
+import { SAVE_COMMENT } from "./types";
+
+export function saveComment(comment) {
+  return {
+    type: SAVE_COMMENT,
+    payload: comment,
+  };
+}
+```
+
+reducers/comments.js
+
+```js
+import { SAVE_COMMENT } from "../actions/types";
+
+export default function (state = [], action) {
+  switch (action.type) {
+    case SAVE_COMMENT: {
+      return [...state, action.payload];
+    }
+    default:
+      return state;
+  }
+}
+```
+
+now wire up the actions to comments component
