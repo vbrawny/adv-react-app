@@ -359,6 +359,10 @@ reportWebVitals();
 
 ### 6-comment-list-wireup
 
+Now reading state from store to components through mapStateToProps function, with this function we obtain the state from the
+reducer - awesome right.
+and we pass this to connect function
+
 components/CommentList.js
 
 ```js
