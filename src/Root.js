@@ -20,7 +20,8 @@ export default ({children, initialState={}}) => {
     return (
         // <Provider store={createStore(reducers,props.initialState)}>
          <Provider store={createStore(reducers,initialState)}>
-            {props.children}
+            {/* {props.children} */}
+            {children}
         </Provider>
     )
 }

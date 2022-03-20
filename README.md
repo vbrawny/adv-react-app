@@ -431,13 +431,15 @@ ReactDOM.render(
 reportWebVitals();
 ```
 
-```root.js
-import React from 'react';
+root.js
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+```js
+import React from "react";
 
-import reducers from './reducers';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import reducers from "./reducers";
 
 // export default (props) => {
 //     return (
@@ -447,15 +449,14 @@ import reducers from './reducers';
 //     )
 // }
 
-
-
 // export default (props) => {
-export default ({children, initialState={}}) => {
-    return (
-        // <Provider store={createStore(reducers,props.initialState)}>
-         <Provider store={createStore(reducers,initialState)}>
-            {props.children}
-        </Provider>
-    )
-}
+export default ({ children, initialState = {} }) => {
+  return (
+    // <Provider store={createStore(reducers,props.initialState)}>
+    <Provider store={createStore(reducers, initialState)}>
+      {/* {props.children} */}
+      {children}
+    </Provider>
+  );
+};
 ```
