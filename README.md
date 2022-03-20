@@ -356,3 +356,34 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 ```
+
+### 6-comment-list-wireup
+
+components/CommentList.js
+
+```js
+import React from "react";
+import { connect } from "react-redux";
+import reducers from "../reducers";
+export const CommentsList = (props) => {
+  // const renderComments = () =>  (
+  //   props.comments.map(comment => (<li key={comment}>{comment}</li>))
+  // )
+
+  return (
+    <div>
+      <ul>
+        {props.comments.map((comment) => (
+          <li key={comment}>{comment}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return { comments: state.comments };
+};
+
+export default connect(mapStateToProps, null)(CommentsList);
+```
